@@ -12,23 +12,23 @@ const config = {
 
     },
 
-    // staging: {
-    //     DB: {
-    //         HOST: "0.0.0.0",
-    //         PORT: "27017",
-    //         DATABASE: "streamies",
-    //         MONGOOSE: {
-    //             useUndifinedTopology: true,
-    //             useNewUrlParser: true
-    //         },
-    //         UserName: "manishpatra254",
-    //         Password: "pbXAlfYZ5LgNbfje"
-    //     },
+    staging: {
+        DB: {
+            HOST: "0.0.0.0",
+            PORT: "27017",
+            DATABASE: "FOURSEASON",
+            MONGOOSE: {
+                useUndifinedTopology: true,
+                useNewUrlParser: true
+            },
+            UserName: "manishpatra254",
+            Password: "y1ZgWWJIL5vbAjeS"
+        },
 
 
-    //     PORTNO: 8680,
+        PORTNO: 8680,
 
-    // },
+    },
 }
 export const get = function get(env) {
     return config[env];
