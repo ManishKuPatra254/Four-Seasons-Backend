@@ -35,12 +35,14 @@ export const userFormLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
         console.log(req.body, "req.body");
-        const userData = await apis.findOne({ email });
+        const userDataEmail = await apis.findOne({ email });
+        const userDataPassword = await apis.findOne({ password });
 
 
-        console.log(userData, "gfkjl;")
+        console.log(userDataEmail, "emaillogin")
+        console.log(userDataPassword, "passwordlogin")
 
-        if (!userData) {
+        if (!userDataEmail && userDataPassword) {
             console.log("entrr")
             throw new Error('User not found');
         }
