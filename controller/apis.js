@@ -42,7 +42,7 @@ export const userFormLogin = async (req, res) => {
         console.log(userDataEmail, "emaillogin")
         console.log(userDataPassword, "passwordlogin")
 
-        if (!userDataEmail && userDataPassword) {
+        if (!userDataEmail && !userDataPassword) {
             console.log("entrr")
             throw new Error('User not found');
         }
