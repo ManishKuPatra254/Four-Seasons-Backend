@@ -66,3 +66,24 @@ export const userFormLogin = async (req, res) => {
         console.log(errorMsg.message);
     }
 };
+
+export const getUserById = async (req, res) => {
+    try {
+        const { id } = req.query;
+
+        const user = await apis.findById(id);
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        res.send({
+            status: true,
+            statusCode: 200,
+            message: 'User retrieved successfully',
+            user,
+        });
+    } catch (error) {
+        res.status(500).send('An error occurred while fetching the user');
+    }
+};
