@@ -63,7 +63,7 @@ export const userFormLogin = async (req, res) => {
         const { email, password } = req.body;
         console.log(req.body, "req.body");
         const userData = await apis.findOne({ email });
-        console.log(object)
+        // console.log(object)
 
         console.log(userData, "gfkjl;");
 
@@ -72,19 +72,17 @@ export const userFormLogin = async (req, res) => {
             throw new Error('User not found');
         }
 
-        // Compare entered password with stored hashed password
         const isPasswordValid = await bcrypt.compare(password, userData.password);
 
         if (!isPasswordValid) {
             throw new Error('Incorrect password');
         }
-
         res.send({
             status: 200,
             success: true,
             msg: 'User login successful',
         });
     } catch (error) {
-        res.send({ status: 400, success: false, msg: error.message });
+        res.send({ status: 400, success: false, msg: error.msg });
     }
 };
