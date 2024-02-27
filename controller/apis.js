@@ -1,5 +1,6 @@
 import apis from "../model/apis";
 import bcrypt from 'bcrypt';
+import responseMessages from '../responseMessage'
 
 export const userFormSignup = async (req, res) => {
     console.log("enter");
@@ -30,59 +31,38 @@ export const userFormSignup = async (req, res) => {
 };
 
 
-// export const userFormLogin = async (req, res) => {
-
-//     try {
-//         const { email, password } = req.body;
-//         console.log(req.body, "req.body");
-//         const userData = await apis.findOne({ email });
-
-
-//         console.log(userData, "gfkjl;")
-
-//         if (!userData) {
-//             console.log("entrr")
-//             throw new Error('User not found');
-//         }
-
-//         res.send({
-//             status: 200,
-//             success: true,
-//             msg: 'user login successfully',
-//         });
-//     }
-//     catch (error) {
-//         res.send({ status: 400, success: false, msg: error.message });
-
-//     }
-// }
-
-
 export const userFormLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
         console.log(req.body, "req.body");
         const userData = await apis.findOne({ email });
-        // console.log(object)
 
         console.log(userData, "gfkjl;");
 
         if (!userData) {
-            console.log("entrr");
-            throw new Error('User not found');
+            throw new Error('userNotFound');
         }
 
         const isPasswordValid = await bcrypt.compare(password, userData.password);
 
         if (!isPasswordValid) {
-            throw new Error('Incorrect password');
+            throw new Error('incorrectPassword');
         }
+
         res.send({
-            status: 200,
+            status: responseMessages.loginSuccess.statusCode,
             success: true,
-            msg: 'User login successful',
+            msg: responseMessages.loginSuccess.message,
         });
     } catch (error) {
-        res.send({ status: 400, success: false, msg: error.msg });
+        const errorMsg = responseMessages[error.message] || responseMessages.genericError;
+
+        res.send({
+            status: errorMsg.statusCode,
+            success: false,
+            msg: errorMsg.message,
+        });
+
+        console.log(errorMsg.message);
     }
 };
