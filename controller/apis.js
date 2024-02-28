@@ -69,7 +69,7 @@ export const userFormLogin = async (req, res) => {
 
 export const getUserById = async (req, res) => {
     try {
-        const { id } = req.query;
+        const { id } = req.params;
 
         const user = await apis.findById(id);
 
