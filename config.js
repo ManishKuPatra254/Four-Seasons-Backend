@@ -7,6 +7,10 @@ const config = {
             UserName: "",
             Password: ""
         },
+        email: {
+            username: "flmebird@gmail.com",
+            password: "ikrx rdzf bjlk fhlk"
+        },
 
         PORTNO: 8000,
 
@@ -24,7 +28,10 @@ const config = {
             UserName: "manishpatra254",
             Password: "y1ZgWWJIL5vbAjeS"
         },
-
+        email: {
+            username: "flmebird@gmail.com",
+            password: "ikrx rdzf bjlk fhlk"
+        },
 
         PORTNO: 8000,
 
